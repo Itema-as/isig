@@ -165,7 +165,7 @@
 					var data = $("#f-phone").val().replace(
 							/(\d{2})(\d{3})(\d{2})(\d{3})/, '+$1 $2 $3 $4')
 					$('#s-phone').text(data);
-					$('#s-phone').attr('href','tel:+47' + $("#f-phone").val())
+					$('#s-phone').attr('href','tel:+' + $("#f-phone").val())
 				});
 		$('#f-email').change(function() {
 			var data = $("#f-email").val()
