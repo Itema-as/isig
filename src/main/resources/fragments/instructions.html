@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="instructions">
+<h2>Thunderbird</h2>
+<ol>
+<li>Lagre signaturen til fil på en passende plassering</li>
+<li>Åpne Thunderbird og gå til <b>Verktøy > Kontoinnstillinger</b></li>
+<li>Hak av for valget "Legg ved signaturen fra en fil isteden (tekst, HTML eller bilde)" og velg filen du nettopp lagret.</li>
+</ol>
+
+<h2>Standard e-postklient på Mac</h2>
+<ol>
+<li>Kopier signaturen til utklippstavlen</li>
+<li>Gå til <b>Mail > Preferences > Signatures</b></li>
+<li>Opprett en ny signatur og gi den et passende navn</li>
+<li>Åpne et terminalvindu og kjør <code>ls -laht ~/Library/Mobile\ Documents/com\~apple\~mail/Data/V4/Signatures</code> og finn den sist endrede filen</li>
+<li>Åpne denne filen du nettopp oppretttet i en teksteditor. For eksempel (fra terminalvinduet) <code>open -a TextEdit ~/Library/Mobile\ Documents/com\~apple\~mail/Data/V4/Signatures/D1BCB669-0797-4330-B13C-4563CFE0F262.mailsignature</code></li>
+<li>Erstatt alt under linjen som starter med <code>MIME-Version</code> med den kopierte teksten og lagre filen</li>
+</ol>
+
+<h2>Gmail</h2>
+<ol>
+<li>Kopier signaturen til utklippstavlen</li>
+<li>Åpne GMail i nettleseren og gå til <b>Innstillinger</b></li>
+<li>Bla nedover til du finner <b>Signatur</b> og lim inn den kopierte signaturen i tekstfeltet</li>
+<li>Gå nedest på siden og trykk <b>Lagre endringer</b></li>
+</ol>
+</div>
+</html>

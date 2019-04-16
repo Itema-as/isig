@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta
+	http-equiv="Content-Type"
+	content="text/html; charset=UTF-8" />
+<meta
+	http-equiv="X-UA-Compatible"
+	content="IE=edge" />
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Itema signaturgenerator</title>
+<script
+	th:src="@{/webjars/jquery/3.3.1-2/jquery.min.js}"
+	type="text/javascript"></script>
+<!-- Bootstrap -->
+<link
+	rel="stylesheet"
+	th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.min.css}" />
+<style type="text/css">
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+</style>	
+</head>
+<body>
+	<br />
+	<div
+		class="container"
+		role="main">
+		<div class="jumbotron">
+			<h1>Itema signaturgenerator</h1>
+			<p>Fyll ut detaljer i skjemaet nedenfor, kontrollér at alt ser
+				riktig ut til høyre for dét og følg deretter oppskriften for å bruke
+				signaturen i din e-post applikasjon. Kontrollér gjerne også at
+				lenkene i den resulterende signaturen, til høyre for ledetekstene
+				fører til riktig sted. Disse er adresse, telefon, og e-post.</p>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="col-xs-4">
+				<form>
+					<div class="form-group">
+						<label for="f-name">Navn:</label> <input
+							tabindex="1"
+							class="form-control"
+							type="text"
+							id="f-name"
+							required
+							value="Balle Klorin" />
+					</div>
+					<div class="form-group">
+						<label for="f-title">Tittel:</label> <input
+							tabindex="2"
+							class="form-control"
+							type="text"
+							id="f-title"
+							required
+							value="Obsternasig kverulant"></input>
+					</div>
+					<div class="form-group">
+						<label for="f-phone">Telefonnummer:</label> <input
+							tabindex="3"
+							class="form-control"
+							type="tel"
+							pattern="+47 [0-9]{2} [0-9]{2} [0-9]{3}"
+							id="f-phone"
+							required
+							value="66699666">
+					</div>
+					<div class="form-group">
+						<label for="f-email">E-post adresse:</label> <input
+							tabindex="4"
+							class="form-control"
+							type="email"
+							id="f-email"
+							required
+							value="bk@itema.no"></input>
+					</div>
+				</form>
+			</div>
+			<div class="col-xs-6">
+<div id="signature">
+<div style="font-family: Arial, sans-serif; font-size: 10pt;">
+	<div>Med vennlig hilsen</div>
+	<div style="font-family: Arial, sans-serif; font-size: 12pt; font-weight: bold; padding-top: 10pt"
+		id="s-name">Balle Klorin</div>
+	<div style="font-family: Arial, sans-serif; font-size: 10pt; color: #000;">
+		<div id="s-title">Obsternasig kverulant</div>
+		<div>
+			<img src="http://itema.no/wp-content/uploads/2017/02/itema-signatur-logo.png"
+				style="width: 100px; padding-top: 10pt; padding-bottom: 10pt;"
+				alt="Itema AS"
+				width="100px" />
+		</div>
+		<div>
+			Adresse: <a href="https://www.google.no/maps/place/Itema+AS/@63.4122243,10.4438912,17z/data=!3m1!4b1!4m5!3m4!1s0x466d304b5c0c4f3b:0xedba8dec3c8a7fe4!8m2!3d63.4122219!4d10.4460852?hl=no"
+				style="color: #000; text-decoration: none"><span
+				style="color: #000; text-decoration: none">Brøsetvegen 164A, 7069 Trondheim</span></a>
+		</div>
+		<div>
+			Telefon: <a
+				href="tel:+4766699666"
+				style="color: #000; text-decoration: none;"
+				id="s-phone">+47 666 99 666</a>
+		</div>
+		<div>
+			E-post: <a
+				href="mailto:bk@itema.no"
+				style="color: #000; text-decoration: none;"
+				id="s-email">bk@itema.no</a>
+		</div>
+		<div>
+			<a href="http://itema.no"
+				style="color: #000; text-decoration: none;">www.itema.no</a>
+		</div>
+	</div>
+</div>
+</div> <!-- signature -->
+			<br/>
+			<div class="btn-group" role="group" style="vertical-align: bottom;">
+				<a type="button"
+					tabindex="5"
+					onclick="copyToClipboard(document.getElementById('signature'))"
+					class="btn btn-primary">Kopier til utklippstavlen</a>
+				<a type="button" id="download"
+					tabindex="6"
+					onclick="downloadSignature()" 
+					class="btn btn-primary">Lagre som fil</a>
+			</div>
+			</div>
+		</div>
+		<div th:replace="../fragments/instructions :: instructions"></div>
+	</div>
+	<script>
+		function downloadSignature() {
+			var a = document.getElementById('download');
+			var text = document.getElementById('signature').innerHTML;
+			var file = new Blob([ text ], {
+				type : 'text/html;charset=utf-8'
+			});
+			a.href = URL.createObjectURL(file);
+			a.download = 'signature.html';
+		}
+
+		function copyToClipboard(element) {
+			var selection = window.getSelection(), selectData = document
+					.createRange();
+			selection.removeAllRanges();
+			selectData.selectNodeContents(element);
+			selection.addRange(selectData);
+			var copyResult = document.execCommand("copy");
+			if (copyResult)
+				selection.removeAllRanges();
+			else
+				alert("Your browser does not support clipboard commands, press ctrl+c");
+		}
+		$('#f-name').change(function() {
+			var data = $("#f-name").val()
+			$('#s-name').text(data);
+		});
+		$('#f-title').change(function() {
+			var data = $("#f-title").val()
+			$('#s-title').text(data);
+		});
+		$('#f-phone').change(
+				function() {
+					var data = $("#f-phone").val().replace(
+							/(\d{3})(\d{2})(\d{3})/, '+47 $1 $2 $3')
+					$('#s-phone').text(data);
+					$('#s-phone').attr('href','tel:+47' + $("#f-phone").val())
+				});
+		$('#f-email').change(function() {
+			var data = $("#f-email").val()
+			$('#s-email').text(data);
+			$('#s-email').attr('href','mailto:'+data);
+		});
+	</script>
+	<hr />
+	<footer></footer>
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/webjars/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
