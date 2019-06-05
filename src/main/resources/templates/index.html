@@ -108,7 +108,7 @@
 				id="s-email">bk@itema.no</a>
 		</div>
 		<div>
-			<a href="http://itema.no"
+			<a href="https://www.itema.no"
 				style="color: #000; text-decoration: none;">www.itema.no</a>
 		</div>
 	</div>
@@ -165,7 +165,7 @@
 					var data = $("#f-phone").val().replace(
 							/(\d{2})(\d{3})(\d{2})(\d{3})/, '+$1 $2 $3 $4')
 					$('#s-phone').text(data);
-					$('#s-phone').attr('href','tel:+' + $("#f-phone").val())
+					$('#s-phone').attr('href','tel:' + $("#f-phone").val())
 				});
 		$('#f-email').change(function() {
 			var data = $("#f-email").val()
