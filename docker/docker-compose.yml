@@ -1,0 +1,12 @@
+
+version: '3.7'
+
+services:
+  isig:
+    image: itema-isig
+    container_name: itema-isig
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8080:8080"
