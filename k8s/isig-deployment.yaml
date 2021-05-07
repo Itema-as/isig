@@ -14,7 +14,7 @@ spec:
         app: isig
     spec:
       containers:
-      - image: docker.pkg.github.com/itema-as/isig/isig:latest
+      - image: ghcr.io/itema-as/isig:latest
         name: isig
         ports:
         - containerPort: 8081
