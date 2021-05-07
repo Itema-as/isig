@@ -17,5 +17,5 @@ spec:
       - image: ghcr.io/itema-as/isig:latest
         name: isig
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
 
