@@ -11,9 +11,9 @@
 	</parent>
 	<groupId>no.itema</groupId>
 	<artifactId>isig</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Itema e-mail signature generator</name>
-	<description>Itema e-mail signature generator</description>
+	<description>Itema e-post signaturgenerator</description>
 
 	<properties>
 		<docker.image.prefix>no.itema</docker.image.prefix>
