@@ -20,6 +20,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Set up Java JDK
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 11
+
+      - name: Build image
+        run: ./mvnw install
 
       - name: Log in to GitHub Container Registry
         if: github.event_name != 'pull_request'
