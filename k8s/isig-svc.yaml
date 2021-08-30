@@ -4,11 +4,10 @@ metadata:
   name: isig-service
 spec:
   type: NodePort
-  ports:
-  - name: http
-    protocol: TCP
-    port: 8080
-    targetPort: 8080
   selector:
     app: isig
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 8081
 
